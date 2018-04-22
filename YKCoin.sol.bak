@@ -1,0 +1,22 @@
+pragma solidity ^0.4.11;
+
+contract YKCoin{
+/* 从账户地址到货币余额的映射*/
+  mapping (address => uint256) public balanceOf;
+  function YKCoin(){
+    /* 发行货币 */
+    balanceOf[msg.sender] = 300000000;
+  }
+  
+  function getBalanceOf(address addr) returns (uint256) {
+    return balanceOf[addr];
+  }
+
+  function transfer(address _from, address _to, uint _value){
+    require(balanceOf[_from] >= _value);
+    require(balanceOf[_to] + _value >= balanceOf[_to]);
+
+    balanceOf[_from] -= _value;
+    balanceOf[_to] += _value;
+  }  
+}
